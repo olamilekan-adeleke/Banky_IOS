@@ -11,6 +11,15 @@ class LoginViewController: UIViewController {
     let loginView = LoginView()
     let button = UIButton(type: .system)
 
+    lazy var errorMesage: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Opps Something went wrong"
+        label.textColor = .systemRed
+        label.textAlignment = .center
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -32,9 +41,11 @@ extension LoginViewController {
     private func layout() {
         view.addSubview(loginView)
         view.addSubview(button)
+        view.addSubview(errorMesage)
 
         // LoginView
         NSLayoutConstraint.activate([
+            loginView.heightAnchor.constraint(equalToConstant: 80),
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 2),
@@ -46,6 +57,14 @@ extension LoginViewController {
             button.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
             button.heightAnchor.constraint(equalToConstant: 40),
+
+        ])
+
+        // ErrorMessageLabel
+        NSLayoutConstraint.activate([
+            errorMesage.topAnchor.constraint(equalToSystemSpacingBelow: button.bottomAnchor, multiplier: 2),
+            errorMesage.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            errorMesage.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
         ])
     }
 }
