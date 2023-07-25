@@ -29,7 +29,7 @@ class LoginView: UIView {
 
 extension LoginView {
     public func style() {
-        self.layer.cornerRadius = 5
+        layer.cornerRadius = 5
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .secondarySystemBackground
 
@@ -78,8 +78,7 @@ extension LoginView: UITextFieldDelegate {
     }
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" { return true }
-        else { return false }
+        return true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {}

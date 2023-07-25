@@ -14,11 +14,15 @@ class LoginViewController: UIViewController {
     lazy var errorMesage: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Opps Something went wrong"
+        label.text = ""
         label.textColor = .systemRed
         label.textAlignment = .center
+        label.isHidden = true
         return label
     }()
+
+    var username: String? { loginView.usernameTextField.text }
+    var password: String? { loginView.passwordTextField.text }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,5 +76,32 @@ extension LoginViewController {
 // MARK: - Actions
 
 extension LoginViewController {
-    @objc private func buttonTapped(_ sender: UIButton) {}
+    @objc private func buttonTapped(_ sender: UIButton) {
+        errorMesage.isHidden = true
+        login()
+    }
+
+    private func login() {
+        guard let username = username, let password = password else {
+            assertionFailure("Username / Password should never be nill")
+            return
+        }
+
+        if username.isEmpty || password.isEmpty {
+            showErrorMessage(withMessage: "Username / Password can not be blank")
+            return
+        }
+
+        if username == "Kod-x" && password == "Welcome" {
+            button.configuration?.showsActivityIndicator = true
+        } else {
+            button.configuration?.showsActivityIndicator = false
+            showErrorMessage(withMessage: "Incorrect username / password!")
+        }
+    }
+
+    private func showErrorMessage(withMessage message: String) {
+        errorMesage.isHidden = false
+        errorMesage.text = message
+    }
 }
