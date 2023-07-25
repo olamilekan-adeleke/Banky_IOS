@@ -8,6 +8,9 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    let titleLabel = UILabel()
+    let subtitleLabel = UILabel()
+
     let loginView = LoginView()
     let button = UIButton(type: .system)
 
@@ -40,12 +43,36 @@ extension LoginViewController {
         button.configuration?.imagePadding = 8
         button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
+
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = "Banky"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textAlignment = .center
+
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.text = "Banking The Unbank Like They Do Say"
+        subtitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
     }
 
     private func layout() {
+        view.addSubview(titleLabel)
+        view.addSubview(subtitleLabel)
         view.addSubview(loginView)
         view.addSubview(button)
         view.addSubview(errorMesage)
+
+        // TitleLabels
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 10),
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 10),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 10),
+
+            subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0.5),
+            subtitleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: subtitleLabel.trailingAnchor, multiplier: 5),
+        ])
 
         // LoginView
         NSLayoutConstraint.activate([
@@ -61,7 +88,6 @@ extension LoginViewController {
             button.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
             button.heightAnchor.constraint(equalToConstant: 40),
-
         ])
 
         // ErrorMessageLabel
