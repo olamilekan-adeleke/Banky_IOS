@@ -9,7 +9,7 @@ import UIKit
 
 class OnboardingContainerViewController: UIViewController {
     let pageViewController: UIPageViewController
-    var pages = [UIViewController]()
+    var pages: [UIViewController]
     var currentVC: UIViewController {
         didSet {}
     }
@@ -17,14 +17,23 @@ class OnboardingContainerViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let page1 = ViewController1()
-        let page2 = ViewController2()
-        let page3 = ViewController3()
+        let page1 = OnboardingViewController(
+            image: "E-Wallet-pana",
+            title: "Get started with banky",
+            subtitle: "A simple and secure app to help you track your spending, save money, and reach your financial goals"
+        )
+        let page2 = OnboardingViewController(
+            image: "Finance-bro",
+            title: "Manage your money with ease",
+            subtitle: "Get insights into your spending habits so you can make informed financial decisions"
+        )
+        let page3 = OnboardingViewController(
+            image: "Revenue-cuate",
+            title: "Take control of your financial future",
+            subtitle: "Set and track financial goals to stay on track"
+        )
         
-        pages.append(page1)
-        pages.append(page2)
-        pages.append(page3)
-        
+        pages = [page1, page2, page3]
         currentVC = pages.first!
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -88,28 +97,5 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return pages.firstIndex(of: currentVC) ?? 0
-    }
-}
-
-// MARK: - ViewControllers
-
-class ViewController1: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemRed
-    }
-}
-
-class ViewController2: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemGreen
-    }
-}
-
-class ViewController3: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBlue
     }
 }
