@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol OnboardingContainerViewControllerDelegate: AnyObject {
+    func didOnboard()
+}
+
 class OnboardingContainerViewController: UIViewController {
+    weak var delegate: OnboardingContainerViewControllerDelegate?
+
     let pageViewController: UIPageViewController
     var pages: [UIViewController]
     var currentVC: UIViewController
@@ -93,7 +99,7 @@ class OnboardingContainerViewController: UIViewController {
         // CloseButton
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
-            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 2),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: closeButton.trailingAnchor, multiplier: 2),
         ])
     }
 }
@@ -133,5 +139,7 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
 // MARK: - Actions
 
 extension OnboardingContainerViewController {
-    @objc private func closeButtonTapped(_ sender: UIButton) {}
+    @objc private func closeButtonTapped(_ sender: UIButton) {
+        delegate?.didOnboard()
+    }
 }
