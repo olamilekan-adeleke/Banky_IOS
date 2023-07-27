@@ -57,7 +57,6 @@ class OnboardingContainerViewController: UIViewController {
         pageViewController.didMove(toParent: self)
         
         pageViewController.dataSource = self
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false, completion: nil)
         currentVC = pages.first!
@@ -67,12 +66,19 @@ class OnboardingContainerViewController: UIViewController {
     }
     
     private func style() {
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .systemBackground
+        
+        // PageView
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.systemTeal.withAlphaComponent(0.5)
+        pageControl.currentPageIndicatorTintColor = UIColor.systemTeal
         
         // CloseButton
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setTitle("Close", for: .normal)
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .primaryActionTriggered)
+        closeButton.tintColor = .systemTeal
     }
     
     private func layout() {
