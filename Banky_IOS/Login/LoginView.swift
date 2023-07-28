@@ -103,6 +103,8 @@ extension LoginView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {}
 }
 
+// MARK: - Actions
+
 extension LoginView {
     @objc private func passwordIocnTapped() {
         if hidePaasword == true {
@@ -112,5 +114,12 @@ extension LoginView {
             hidePaasword = true
             passwordIcon.image = UIImage(named: "eye")
         }
+    }
+
+    func clearForm() {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        hidePaasword = false
+        passwordIcon.image = UIImage(named: "eye")
     }
 }

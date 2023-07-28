@@ -10,7 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var hasDoneOnboard: Bool = false
 
     let loginViewController = LoginViewController()
     let onboardingViewController = OnboardingContainerViewController()
@@ -25,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingViewController.delegate = self
         homeView.logOurDelegate = self
 
-        window?.rootViewController = hasDoneOnboard ? loginViewController : onboardingViewController
+        window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
         return true
     }
 }
@@ -42,7 +41,7 @@ extension AppDelegate: LoginViewControllerDelegete, LogOutDelegate {
 
 extension AppDelegate: OnboardingContainerViewControllerDelegate {
     func didOnboard() {
-        hasDoneOnboard = true
+        UserLocalState.hasOnboarded = true
         setRootViewController(loginViewController)
     }
 }
