@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LogOutDelegate: AnyObject {
+    func didLogOut()
+}
+
 protocol LoginViewControllerDelegete: AnyObject {
     func didLogin()
 }
@@ -36,6 +40,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        button.configuration?.showsActivityIndicator = false
     }
 }
 

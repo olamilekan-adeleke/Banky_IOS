@@ -10,9 +10,11 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var hasDoneOnboard: Bool = false
 
     let loginViewController = LoginViewController()
     let onboardingViewController = OnboardingContainerViewController()
+    let homeView = DummyHomeViewControler()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -21,18 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         loginViewController.delegate = self
         onboardingViewController.delegate = self
+        homeView.logOurDelegate = self
 
-        window?.rootViewController = onboardingViewController
+        window?.rootViewController = hasDoneOnboard ? loginViewController : onboardingViewController
         return true
     }
 }
 
-extension AppDelegate: LoginViewControllerDelegete {
-    func didLogin() {}
+extension AppDelegate: LoginViewControllerDelegete, LogOutDelegate {
+    func didLogin() {
+        setRootViewController(homeView)
+    }
+
+    func didLogOut() {
+        setRootViewController(loginViewController)
+    }
 }
 
 extension AppDelegate: OnboardingContainerViewControllerDelegate {
     func didOnboard() {
+        hasDoneOnboard = true
         setRootViewController(loginViewController)
     }
 }

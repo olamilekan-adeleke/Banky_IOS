@@ -11,8 +11,12 @@ import UIKit
 class LoginView: UIView {
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
+    let passwordIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+
     let stackView = UIStackView()
     let divider = UIView()
+
+    var hidePaasword: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,10 +45,19 @@ extension LoginView {
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
 
+        // Password Icon
+        passwordIcon.translatesAutoresizingMaskIntoConstraints = false
+        passwordIcon.image = UIImage(named: "eye")
+        passwordIcon.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(passwordIocnTapped)))
+        passwordIcon.tintColor = .lightGray
+        passwordIcon.contentMode = .scaleAspectFit
+
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Password"
-        passwordTextField.isSecureTextEntry = true
+        passwordTextField.isSecureTextEntry = hidePaasword
         passwordTextField.delegate = self
+        passwordTextField.rightView = passwordIcon
+        passwordTextField.rightViewMode = .always
 
         divider.translatesAutoresizingMaskIntoConstraints = false
         divider.backgroundColor = .secondarySystemFill
@@ -64,6 +77,12 @@ extension LoginView {
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1),
         ])
 
+//        NSLayoutConstraint.activate([
+//            passwordIcon.heightAnchor.constraint(equalToConstant: 15),
+//            passwordIcon.widthAnchor.constraint(equalToConstant: 15),
+//            passwordIcon.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
+//        ])
+
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
 }
@@ -82,4 +101,16 @@ extension LoginView: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {}
+}
+
+extension LoginView {
+    @objc private func passwordIocnTapped() {
+        if hidePaasword == true {
+            hidePaasword = false
+            passwordIcon.image = UIImage(named: "eye.slash")
+        } else {
+            hidePaasword = true
+            passwordIcon.image = UIImage(named: "eye")
+        }
+    }
 }
