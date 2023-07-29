@@ -24,20 +24,21 @@ class HomeViewController: UITabBarController {
         moneyVC.setTabBarImage(imageName: "arrow.left.arrow.right", title: "Move Money")
         moreVC.setTabBarImage(imageName: "ellipsis.circle", title: "More")
 
-        let summaryNC = UINavigationController(rootViewController: AccountSummaryViewController())
-        let moneyNC = UINavigationController(rootViewController: MoveMoneyViewController())
-        let moreNC = UINavigationController(rootViewController: MoreViewController())
+        let summaryNC = UINavigationController(rootViewController: summaryVC)
+        let moneyNC = UINavigationController(rootViewController: moneyVC)
+        let moreNC = UINavigationController(rootViewController: moreVC)
 
         summaryNC.navigationBar.barTintColor = AppColor.primaryColor
         hideNavigationBarLine(summaryNC.navigationBar)
 
         let tabBarList = [summaryNC, moneyNC, moreNC]
+        
         viewControllers = tabBarList
     }
 
     private func setUpTabs() {
-        self.tabBar.tintColor = AppColor.primaryColor
-        self.tabBar.isTranslucent = false
+        tabBar.tintColor = AppColor.primaryColor
+        tabBar.isTranslucent = false
     }
 
     private func hideNavigationBarLine(_ navigationBar: UINavigationBar) {

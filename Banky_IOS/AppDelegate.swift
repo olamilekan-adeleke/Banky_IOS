@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingViewController.delegate = self
 //        homeView.logOurDelegate = self
 
-        window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
+        window?.rootViewController = homeView
+//        window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
         return true
     }
 }

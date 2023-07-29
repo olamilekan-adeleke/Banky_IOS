@@ -19,6 +19,7 @@ extension UIViewController {
     func setTabBarImage(imageName: String, title: String) {
         let config = UIImage.SymbolConfiguration(scale: .large)
         let image = UIImage(systemName: imageName, withConfiguration: config)
+//        image?.withTintColor(UIColor.gray)
         tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
     }
 }
