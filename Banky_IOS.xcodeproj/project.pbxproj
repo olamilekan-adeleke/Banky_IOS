@@ -12,6 +12,9 @@
 		390732FF2A726A0D00ED72A6 /* AuthStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390732FE2A726A0D00ED72A6 /* AuthStateViewController.swift */; };
 		390733012A726F4800ED72A6 /* DummyHomeViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390733002A726F4800ED72A6 /* DummyHomeViewControler.swift */; };
 		392BD3462A74322200186D51 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD3452A74322200186D51 /* LocalState.swift */; };
+		392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD3482A753BFA00186D51 /* HomeViewController.swift */; };
+		392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD34B2A753D9700186D51 /* UIViewController+Extension.swift */; };
+		392BD34E2A753E0900186D51 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD34D2A753E0900186D51 /* AppColor.swift */; };
 		39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */; };
 		39EBC78B2A6D3EFB006B3139 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */; };
 		39EBC7902A6D3EFD006B3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC78F2A6D3EFD006B3139 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 		390732FE2A726A0D00ED72A6 /* AuthStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStateViewController.swift; sourceTree = "<group>"; };
 		390733002A726F4800ED72A6 /* DummyHomeViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyHomeViewControler.swift; sourceTree = "<group>"; };
 		392BD3452A74322200186D51 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
+		392BD3482A753BFA00186D51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		392BD34B2A753D9700186D51 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		392BD34D2A753E0900186D51 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		39EBC7832A6D3EFB006B3139 /* Banky_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banky_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -65,9 +71,27 @@
 		392BD3442A74321400186D51 /* Utilis */ = {
 			isa = PBXGroup;
 			children = (
+				392BD34A2A753D7D00186D51 /* Extenstions */,
 				392BD3452A74322200186D51 /* LocalState.swift */,
+				392BD34D2A753E0900186D51 /* AppColor.swift */,
 			);
 			path = Utilis;
+			sourceTree = "<group>";
+		};
+		392BD3472A753BDD00186D51 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				392BD3482A753BFA00186D51 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		392BD34A2A753D7D00186D51 /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				392BD34B2A753D9700186D51 /* UIViewController+Extension.swift */,
+			);
+			path = Extenstions;
 			sourceTree = "<group>";
 		};
 		39EBC77A2A6D3EFB006B3139 = {
@@ -89,12 +113,13 @@
 		39EBC7852A6D3EFB006B3139 /* Banky_IOS */ = {
 			isa = PBXGroup;
 			children = (
-				392BD3442A74321400186D51 /* Utilis */,
+				39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */,
+				392BD3472A753BDD00186D51 /* Home */,
 				390732FD2A7269E700ED72A6 /* AuthState */,
 				390732F82A713BB600ED72A6 /* Onboarding */,
-				39EBC79B2A6D41C2006B3139 /* Files */,
 				39EBC79C2A6D420C006B3139 /* Login */,
-				39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */,
+				392BD3442A74321400186D51 /* Utilis */,
+				39EBC79B2A6D41C2006B3139 /* Files */,
 			);
 			path = Banky_IOS;
 			sourceTree = "<group>";
@@ -194,8 +219,11 @@
 				39EBC78B2A6D3EFB006B3139 /* LoginViewController.swift in Sources */,
 				390732FC2A7171D800ED72A6 /* OnboardingViewController.swift in Sources */,
 				39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */,
+				392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */,
 				390732FF2A726A0D00ED72A6 /* AuthStateViewController.swift in Sources */,
 				390732FA2A713BD700ED72A6 /* OnboardingContainerViewController.swift in Sources */,
+				392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */,
+				392BD34E2A753E0900186D51 /* AppColor.swift in Sources */,
 				392BD3462A74322200186D51 /* LocalState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
