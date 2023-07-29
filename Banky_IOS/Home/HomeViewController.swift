@@ -8,16 +8,44 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
         setUpTabs()
     }
 
-    private func setUpViews() {}
+    private func setUpViews() {
+        let summaryVC = AccountSummaryViewController()
+        let moneyVC = MoveMoneyViewController()
+        let moreVC = MoreViewController()
 
-    private func setUpTabs() {}
+        summaryVC.setTabBarImage(imageName: "list.dash.header.rectangle", title: "Summary")
+        moneyVC.setTabBarImage(imageName: "arrow.left.arrow.right", title: "Move Money")
+        moreVC.setTabBarImage(imageName: "ellipsis.circle", title: "More")
+
+        let summaryNC = UINavigationController(rootViewController: AccountSummaryViewController())
+        let moneyNC = UINavigationController(rootViewController: MoveMoneyViewController())
+        let moreNC = UINavigationController(rootViewController: MoreViewController())
+
+        summaryNC.navigationBar.barTintColor = AppColor.primaryColor
+        hideNavigationBarLine(summaryNC.navigationBar)
+
+        let tabBarList = [summaryNC, moneyNC, moneyNC]
+        viewControllers = tabBarList
+    }
+
+    private func setUpTabs() {
+        self.tabBar.tintColor = AppColor.primaryColor
+        self.tabBar.isTranslucent = false
+    }
+
+    private func hideNavigationBarLine(_ navigationBar: UINavigationBar) {
+        let image = UIImage()
+        navigationBar.shadowImage = image
+        navigationBar.setBackgroundImage(image, for: .default)
+        navigationBar.isTranslucent = false
+    }
 }
 
 class AccountSummaryViewController: UIViewController {
