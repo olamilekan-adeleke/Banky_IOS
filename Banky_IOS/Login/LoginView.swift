@@ -47,7 +47,7 @@ extension LoginView {
         passwordIcon.translatesAutoresizingMaskIntoConstraints = false
         passwordIcon.image = UIImage(systemName: "eye")
         passwordIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordIocnTapped)))
-        passwordIcon.tintColor = .systemTeal
+        passwordIcon.tintColor = UIColor.gray.withAlphaComponent(0.7)
         passwordIcon.contentMode = .scaleAspectFit
         passwordIcon.isUserInteractionEnabled = true
 

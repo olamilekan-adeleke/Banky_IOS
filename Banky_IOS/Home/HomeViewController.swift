@@ -31,7 +31,7 @@ class HomeViewController: UITabBarController {
         summaryNC.navigationBar.barTintColor = AppColor.primaryColor
         hideNavigationBarLine(summaryNC.navigationBar)
 
-        let tabBarList = [summaryNC, moneyNC, moneyNC]
+        let tabBarList = [summaryNC, moneyNC, moreNC]
         viewControllers = tabBarList
     }
 

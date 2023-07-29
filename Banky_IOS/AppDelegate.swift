@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let loginViewController = LoginViewController()
     let onboardingViewController = OnboardingContainerViewController()
-    let homeView = DummyHomeViewControler()
+    let homeView = HomeViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         loginViewController.delegate = self
         onboardingViewController.delegate = self
-        homeView.logOurDelegate = self
+//        homeView.logOurDelegate = self
 
         window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
         return true

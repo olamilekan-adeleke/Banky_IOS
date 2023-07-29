@@ -55,7 +55,7 @@ extension LoginViewController {
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .filled()
-        button.backgroundColor = .systemTeal
+        button.tintColor = AppColor.primaryColor
         button.configuration?.imagePadding = 8
         button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
@@ -100,7 +100,7 @@ extension LoginViewController {
 
         // ButtonView
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
+            button.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 4),
             button.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
             button.heightAnchor.constraint(equalToConstant: 40),
@@ -136,7 +136,6 @@ extension LoginViewController {
 
         if username == "Kod-x" && password == "Welcome" {
             button.configuration?.showsActivityIndicator = true
-
             delegate?.didLogin()
         } else {
             button.configuration?.showsActivityIndicator = false

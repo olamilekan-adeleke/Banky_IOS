@@ -77,14 +77,14 @@ class OnboardingContainerViewController: UIViewController {
         // PageView
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.systemTeal.withAlphaComponent(0.5)
-        pageControl.currentPageIndicatorTintColor = UIColor.systemTeal
+        pageControl.pageIndicatorTintColor = AppColor.primaryColor.withAlphaComponent(0.5)
+        pageControl.currentPageIndicatorTintColor = AppColor.primaryColor
         
         // CloseButton
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setTitle("Close", for: .normal)
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .primaryActionTriggered)
-        closeButton.tintColor = .systemTeal
+        closeButton.tintColor = AppColor.primaryColor
     }
     
     private func layout() {
