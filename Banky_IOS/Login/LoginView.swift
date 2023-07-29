@@ -11,12 +11,10 @@ import UIKit
 class LoginView: UIView {
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
-    let passwordIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+    let passwordIcon = UIImageView()
 
     let stackView = UIStackView()
     let divider = UIView()
-
-    var hidePaasword: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,18 +45,22 @@ extension LoginView {
 
         // Password Icon
         passwordIcon.translatesAutoresizingMaskIntoConstraints = false
-        passwordIcon.image = UIImage(named: "eye")
-        passwordIcon.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(passwordIocnTapped)))
-        passwordIcon.tintColor = .lightGray
+        passwordIcon.image = UIImage(systemName: "eye")
+        passwordIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordIocnTapped)))
+        passwordIcon.tintColor = .systemTeal
         passwordIcon.contentMode = .scaleAspectFit
+        passwordIcon.isUserInteractionEnabled = true
 
+        // Password TextField
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Password"
-        passwordTextField.isSecureTextEntry = hidePaasword
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
         passwordTextField.rightView = passwordIcon
         passwordTextField.rightViewMode = .always
+//        passwordTextField.addSubview(passwordIcon)
 
+        // Divider
         divider.translatesAutoresizingMaskIntoConstraints = false
         divider.backgroundColor = .secondarySystemFill
     }
@@ -78,9 +80,10 @@ extension LoginView {
         ])
 
 //        NSLayoutConstraint.activate([
-//            passwordIcon.heightAnchor.constraint(equalToConstant: 15),
-//            passwordIcon.widthAnchor.constraint(equalToConstant: 15),
-//            passwordIcon.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
+//            passwordIcon.heightAnchor.constraint(equalToConstant: 25),
+//            passwordIcon.widthAnchor.constraint(equalToConstant: 25),
+//            passwordIcon.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+//            passwordIcon.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
 //        ])
 
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -107,19 +110,19 @@ extension LoginView: UITextFieldDelegate {
 
 extension LoginView {
     @objc private func passwordIocnTapped() {
-        if hidePaasword == true {
-            hidePaasword = false
-            passwordIcon.image = UIImage(named: "eye.slash")
+        if passwordTextField.isSecureTextEntry == true {
+            passwordTextField.isSecureTextEntry = false
+            passwordIcon.image = UIImage(systemName: "eye.slash")
         } else {
-            hidePaasword = true
-            passwordIcon.image = UIImage(named: "eye")
+            passwordTextField.isSecureTextEntry = true
+            passwordIcon.image = UIImage(systemName: "eye")
         }
     }
 
     func clearForm() {
         usernameTextField.text = ""
         passwordTextField.text = ""
-        hidePaasword = false
-        passwordIcon.image = UIImage(named: "eye")
+        passwordTextField.isSecureTextEntry = false
+        passwordIcon.image = UIImage(systemName: "eye")
     }
 }

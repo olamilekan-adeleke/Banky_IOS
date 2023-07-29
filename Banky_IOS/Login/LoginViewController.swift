@@ -55,6 +55,7 @@ extension LoginViewController {
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .filled()
+        button.backgroundColor = .systemTeal
         button.configuration?.imagePadding = 8
         button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
