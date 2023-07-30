@@ -22,23 +22,23 @@ class OnboardingContainerViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let page1 = OnboardingViewController(
+        let pageOne = OnboardingViewController(
             image: "E-Wallet-pana",
             title: "Get started with banky",
             subtitle: "A simple and secure app to help you track your spending, save money, and reach your financial goals"
         )
-        let page2 = OnboardingViewController(
+        let pageTwo = OnboardingViewController(
             image: "Finance-bro",
             title: "Manage your money with ease",
             subtitle: "Get insights into your spending habits so you can make informed financial decisions"
         )
-        let page3 = OnboardingViewController(
+        let pageThree = OnboardingViewController(
             image: "Revenue-cuate",
             title: "Take control of your financial future",
             subtitle: "Set and track financial goals to stay on track"
         )
         
-        pages = [page1, page2, page3]
+        pages = [pageOne, pageTwo, pageThree]
         currentVC = pages.first!
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
