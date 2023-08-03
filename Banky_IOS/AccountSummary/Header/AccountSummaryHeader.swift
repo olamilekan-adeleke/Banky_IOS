@@ -16,11 +16,6 @@ class AccountSummaryHeader: UIView {
     let searchIcon = iconImageView(systemName: "")
     let bellIcon = iconImageView(systemName: "")
 
-//    override init(reuseIdentifier: String?) {
-//        super.init(reuseIdentifier: reuseIdentifier)
-//
-//    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         style()
@@ -38,6 +33,7 @@ extension AccountSummaryHeader {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
         imageAndIconHStack.translatesAutoresizingMaskIntoConstraints = false
+        imageAndIconHStack.axis = .horizontal
 
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(named: "person")!
@@ -55,25 +51,24 @@ extension AccountSummaryHeader {
     }
 
     public func layout() {
-//        imageAndIconHStack.addArrangedSubview(profileImageView)
+        imageAndIconHStack.addArrangedSubview(profileImageView)
 //        imageAndIconHStack.addArrangedSubview(searchIcon)
 //        imageAndIconHStack.addArrangedSubview(bellIcon)
 //        imageAndIconHStack.
 
-        addSubview(profileImageView)
+        addSubview(imageAndIconHStack)
 
         // ImageAndIconHStack
-//        NSLayoutConstraint.activate([
-//            imageAndIconHStack.heightAnchor.constraint(equalToConstant: 144),
-//            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
-//            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
-//        ])
+        NSLayoutConstraint.activate([
+            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
+        ])
 
         // ProfileImage
-//        NSLayoutConstraint.activate([
-//            profileImageView.heightAnchor.constraint(equalToConstant: 40),
-//            profileImageView.widthAnchor.constraint(equalToConstant: 40),
-//        ])
+        NSLayoutConstraint.activate([
+            profileImageView.heightAnchor.constraint(equalToConstant: 50),
+            profileImageView.widthAnchor.constraint(equalToConstant: 50),
+        ])
     }
 }
 
