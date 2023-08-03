@@ -21,10 +21,11 @@ class AccountSummaryViewController: UIViewController {
 
 extension AccountSummaryViewController {
     private func setUp() {
+//        tableView.backgroundColor = AppColor.primaryColor
         tableView.delegate = self
         tableView.dataSource = self
 
-        tableView.register(AccountSummaryHeader.self, forHeaderFooterViewReuseIdentifier: "AccountSummaryHeader")
+//        tableView.register(AccountSummaryHeader.self, forHeaderFooterViewReuseIdentifier: "AccountSummaryHeader")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountSummaryCell")
 
         layout()
@@ -36,7 +37,7 @@ extension AccountSummaryViewController {
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -61,11 +62,11 @@ extension AccountSummaryViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AccountSummaryHeader") as! AccountSummaryHeader
+        let view = AccountSummaryHeader()
         return view
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return AccountSummaryHeader.
-//    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 144
+    }
 }

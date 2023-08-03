@@ -10,7 +10,7 @@ import UIKit
 
 class AccountSummaryHeader: UITableViewHeaderFooterView {
     let imageAndIconHStack = UIStackView()
-    let profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    let profileImageView = UIImageView()
     let searchIcon = iconImageView(systemName: "")
     let bellIcon = iconImageView(systemName: "")
 
@@ -28,13 +28,17 @@ class AccountSummaryHeader: UITableViewHeaderFooterView {
 
 extension AccountSummaryHeader {
     public func style() {
-        contentView.backgroundColor = AppColor.primaryColor
+        contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
         imageAndIconHStack.translatesAutoresizingMaskIntoConstraints = false
 
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.image = UIImage(named: "person")
-        profileImageView.layer.cornerRadius = 50
+        let image = UIImage(named: "person")!
+        profileImageView.image = image
+        profileImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        profileImageView.frame.size.height = 50
+        profileImageView.frame.size.width = 50
+        profileImageView.layer.cornerRadius = frame.width / 2
         profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .systemTeal
 
@@ -49,14 +53,14 @@ extension AccountSummaryHeader {
 //        imageAndIconHStack.addArrangedSubview(bellIcon)
 //        imageAndIconHStack.
 
-        contentView.addSubview(imageAndIconHStack)
+        contentView.addSubview(profileImageView)
 
         // ImageAndIconHStack
-        NSLayoutConstraint.activate([
-            imageAndIconHStack.heightAnchor.constraint(equalToConstant: 144),
-            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
-            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
-        ])
+//        NSLayoutConstraint.activate([
+//            imageAndIconHStack.heightAnchor.constraint(equalToConstant: 144),
+//            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
+//            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
+//        ])
 
         // ProfileImage
 //        NSLayoutConstraint.activate([
