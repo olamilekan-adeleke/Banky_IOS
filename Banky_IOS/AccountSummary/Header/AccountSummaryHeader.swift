@@ -13,8 +13,9 @@ class AccountSummaryHeader: UIView {
 
     let imageAndIconHStack = UIStackView()
     let profileImageView = UIImageView()
-    let searchIcon = iconImageView(systemName: "")
-    let bellIcon = iconImageView(systemName: "")
+//    let searchIcon = iconImageView(systemName: "magnifyingglass")
+    let searchIcon = iconImageView(systemName: "bell.fill")
+    let bellIcon = iconImageView(systemName: "bell.fill")
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,40 +35,59 @@ extension AccountSummaryHeader {
 
         imageAndIconHStack.translatesAutoresizingMaskIntoConstraints = false
         imageAndIconHStack.axis = .horizontal
+        imageAndIconHStack.distribution = .equalSpacing
 
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.image = UIImage(named: "person")
-//        profileImageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        profileImageView.layer.cornerRadius = frame.width / 2
-        profileImageView.clipsToBounds = true
-        profileImageView.backgroundColor = .systemTeal
+        profileImageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+
+//        profileImageView.layer.cornerRadius = frame.width / 2
+//        profileImageView.clipsToBounds = true
+//        profileImageView.backgroundColor = .systemTeal
 
         searchIcon.translatesAutoresizingMaskIntoConstraints = false
-        
-//
-//        bellIcon.translatesAutoresizingMaskIntoConstraints = false
+//        searchIcon.frame.size.height = 32
+//        searchIcon.frame.size.width = 32
+//        searchIcon.contentMode = .scaleToFill
+
+        bellIcon.translatesAutoresizingMaskIntoConstraints = false
     }
 
     public func layout() {
+        let iconStack = UIStackView(arrangedSubviews: [searchIcon, bellIcon])
+        iconStack.translatesAutoresizingMaskIntoConstraints = false
+        iconStack.axis = .horizontal
+//        iconStack.distribution = .
+
         imageAndIconHStack.addArrangedSubview(profileImageView)
-        imageAndIconHStack.addArrangedSubview(searchIcon)
-//        imageAndIconHStack.addArrangedSubview(bellIcon)
+        imageAndIconHStack.addArrangedSubview(iconStack)
 
         addSubview(imageAndIconHStack)
 
-        // ProfileImage
+        // ImageAndIconHStack
         NSLayoutConstraint.activate([
-            profileImageView.heightAnchor.constraint(equalToConstant: 50),
-            profileImageView.widthAnchor.constraint(equalToConstant: 50),
+            iconStack.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: 1),
+            // imageAndIconHStack.heightAnchor.constraint(equalToConstant: 50),
+            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
+
+            profileImageView.heightAnchor.constraint(equalToConstant: 60),
+            profileImageView.widthAnchor.constraint(equalToConstant: 60),
+//
+//            searchIcon.heightAnchor.constraint(equalToConstant: 32),
+//            searchIcon.widthAnchor.constraint(equalToConstant: 32),
         ])
     }
 }
 
 // Component
 extension AccountSummaryHeader {
-    private static func iconImageView(systemName: String) -> UIImageView {
+    private static func iconImageView(systemName: String) -> UIView {
+        let view = UIView()
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: systemName)
-        return imageView
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: systemName)?.withRenderingMode(.alwaysTemplate)
+        view.addSubview(imageView)
+        return view
     }
 }
