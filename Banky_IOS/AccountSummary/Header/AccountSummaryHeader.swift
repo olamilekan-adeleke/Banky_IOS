@@ -36,33 +36,24 @@ extension AccountSummaryHeader {
         imageAndIconHStack.axis = .horizontal
 
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "person")!
-        profileImageView.image = image
-        profileImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        profileImageView.frame.size.height = 50
-        profileImageView.frame.size.width = 50
-//        profileImageView.layer.cornerRadius = frame.width / 2
-//        profileImageView.clipsToBounds = true
+        profileImageView.image = UIImage(named: "person")
+//        profileImageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        profileImageView.layer.cornerRadius = frame.width / 2
+        profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .systemTeal
 
-//        searchIcon.translatesAutoresizingMaskIntoConstraints = false
+        searchIcon.translatesAutoresizingMaskIntoConstraints = false
+        
 //
 //        bellIcon.translatesAutoresizingMaskIntoConstraints = false
     }
 
     public func layout() {
         imageAndIconHStack.addArrangedSubview(profileImageView)
-//        imageAndIconHStack.addArrangedSubview(searchIcon)
+        imageAndIconHStack.addArrangedSubview(searchIcon)
 //        imageAndIconHStack.addArrangedSubview(bellIcon)
-//        imageAndIconHStack.
 
         addSubview(imageAndIconHStack)
-
-        // ImageAndIconHStack
-        NSLayoutConstraint.activate([
-            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
-        ])
 
         // ProfileImage
         NSLayoutConstraint.activate([
