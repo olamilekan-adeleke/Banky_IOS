@@ -8,14 +8,21 @@
 import Foundation
 import UIKit
 
-class AccountSummaryHeader: UITableViewHeaderFooterView {
+class AccountSummaryHeader: UIView {
+    static let height: CGFloat = 100
+
     let imageAndIconHStack = UIStackView()
     let profileImageView = UIImageView()
     let searchIcon = iconImageView(systemName: "")
     let bellIcon = iconImageView(systemName: "")
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+//    override init(reuseIdentifier: String?) {
+//        super.init(reuseIdentifier: reuseIdentifier)
+//
+//    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         style()
         layout()
     }
@@ -28,7 +35,7 @@ class AccountSummaryHeader: UITableViewHeaderFooterView {
 
 extension AccountSummaryHeader {
     public func style() {
-        contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
         imageAndIconHStack.translatesAutoresizingMaskIntoConstraints = false
 
@@ -38,13 +45,13 @@ extension AccountSummaryHeader {
         profileImageView.contentMode = UIView.ContentMode.scaleAspectFill
         profileImageView.frame.size.height = 50
         profileImageView.frame.size.width = 50
-        profileImageView.layer.cornerRadius = frame.width / 2
-        profileImageView.clipsToBounds = true
+//        profileImageView.layer.cornerRadius = frame.width / 2
+//        profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .systemTeal
 
-        searchIcon.translatesAutoresizingMaskIntoConstraints = false
-
-        bellIcon.translatesAutoresizingMaskIntoConstraints = false
+//        searchIcon.translatesAutoresizingMaskIntoConstraints = false
+//
+//        bellIcon.translatesAutoresizingMaskIntoConstraints = false
     }
 
     public func layout() {
@@ -53,7 +60,7 @@ extension AccountSummaryHeader {
 //        imageAndIconHStack.addArrangedSubview(bellIcon)
 //        imageAndIconHStack.
 
-        contentView.addSubview(profileImageView)
+        addSubview(profileImageView)
 
         // ImageAndIconHStack
 //        NSLayoutConstraint.activate([

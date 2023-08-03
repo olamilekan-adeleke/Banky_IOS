@@ -10,38 +10,32 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     private let games = ["Pacman", "Space Invaders", "Space Patrol"]
-
     let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
 }
 
 extension AccountSummaryViewController {
     private func setUp() {
-//        tableView.backgroundColor = AppColor.primaryColor
+        tableView.sectionHeaderTopPadding = 0
         tableView.delegate = self
         tableView.dataSource = self
 
-//        tableView.register(AccountSummaryHeader.self, forHeaderFooterViewReuseIdentifier: "AccountSummaryHeader")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountSummaryCell")
 
         layout()
     }
 
     private func layout() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
         view.addSubview(tableView)
-
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
     }
 }
 
@@ -62,11 +56,10 @@ extension AccountSummaryViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = AccountSummaryHeader()
-        return view
+        return AccountSummaryHeader()
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 144
+        return AccountSummaryHeader.height
     }
 }
