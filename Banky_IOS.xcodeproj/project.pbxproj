@@ -15,6 +15,8 @@
 		392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD3482A753BFA00186D51 /* HomeViewController.swift */; };
 		392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD34B2A753D9700186D51 /* UIViewController+Extension.swift */; };
 		392BD34E2A753E0900186D51 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD34D2A753E0900186D51 /* AppColor.swift */; };
+		392ECEA42A7B17CA0046D9AF /* AccountSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ECEA32A7B17CA0046D9AF /* AccountSummaryViewController.swift */; };
+		392ECEA82A7B21310046D9AF /* AccountSummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ECEA72A7B21310046D9AF /* AccountSummaryHeader.swift */; };
 		39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */; };
 		39EBC78B2A6D3EFB006B3139 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */; };
 		39EBC7902A6D3EFD006B3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC78F2A6D3EFD006B3139 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		392BD3482A753BFA00186D51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		392BD34B2A753D9700186D51 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		392BD34D2A753E0900186D51 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		392ECEA32A7B17CA0046D9AF /* AccountSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryViewController.swift; sourceTree = "<group>"; };
+		392ECEA72A7B21310046D9AF /* AccountSummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryHeader.swift; sourceTree = "<group>"; };
 		39EBC7832A6D3EFB006B3139 /* Banky_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banky_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,31 @@
 			path = Extenstions;
 			sourceTree = "<group>";
 		};
+		392ECEA22A7B17A80046D9AF /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				392ECEA32A7B17CA0046D9AF /* AccountSummaryViewController.swift */,
+				392ECEA52A7B17D00046D9AF /* Header */,
+				392ECEA62A7B17D80046D9AF /* Cells */,
+			);
+			path = AccountSummary;
+			sourceTree = "<group>";
+		};
+		392ECEA52A7B17D00046D9AF /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				392ECEA72A7B21310046D9AF /* AccountSummaryHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		392ECEA62A7B17D80046D9AF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		39EBC77A2A6D3EFB006B3139 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +147,7 @@
 				390732FD2A7269E700ED72A6 /* AuthState */,
 				390732F82A713BB600ED72A6 /* Onboarding */,
 				39EBC79C2A6D420C006B3139 /* Login */,
+				392ECEA22A7B17A80046D9AF /* AccountSummary */,
 				392BD3442A74321400186D51 /* Utilis */,
 				39EBC79B2A6D41C2006B3139 /* Files */,
 			);
@@ -217,6 +247,7 @@
 				390733012A726F4800ED72A6 /* DummyHomeViewControler.swift in Sources */,
 				39EBC79E2A6D423A006B3139 /* LoginView.swift in Sources */,
 				39EBC78B2A6D3EFB006B3139 /* LoginViewController.swift in Sources */,
+				392ECEA82A7B21310046D9AF /* AccountSummaryHeader.swift in Sources */,
 				390732FC2A7171D800ED72A6 /* OnboardingViewController.swift in Sources */,
 				39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */,
 				392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */,
@@ -225,6 +256,7 @@
 				392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */,
 				392BD34E2A753E0900186D51 /* AppColor.swift in Sources */,
 				392BD3462A74322200186D51 /* LocalState.swift in Sources */,
+				392ECEA42A7B17CA0046D9AF /* AccountSummaryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
