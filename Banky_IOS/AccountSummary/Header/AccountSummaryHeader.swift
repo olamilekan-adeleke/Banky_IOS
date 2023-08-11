@@ -47,6 +47,8 @@ extension AccountSummaryHeader {
         imageAndIconHStack.addArrangedSubview(spacer)
         imageAndIconHStack.addArrangedSubview(searchIcon)
         imageAndIconHStack.addArrangedSubview(bellIcon)
+        
+        imageAndIconHStack.setCustomSpacing(40, after: bellIcon)
 
         addSubview(imageAndIconHStack)
     }
@@ -57,18 +59,15 @@ extension AccountSummaryHeader {
         profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .yellow
 
+        searchIcon.backgroundColor = .yellow
+
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
 
-//            searchIcon.heightAnchor.constraint(equalToConstant: 30),
             searchIcon.widthAnchor.constraint(equalToConstant: 20),
-
-//            bellIcon.heightAnchor.constraint(equalToConstant: 40),
             bellIcon.widthAnchor.constraint(equalToConstant: 20),
         ])
-
-        searchIcon.backgroundColor = .yellow
 
         NSLayoutConstraint.activate([
             imageAndIconHStack.topAnchor.constraint(equalTo: topAnchor),
