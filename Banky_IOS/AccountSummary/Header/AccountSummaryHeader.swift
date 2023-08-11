@@ -37,7 +37,10 @@ extension AccountSummaryHeader {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
         imageAndIconHStack.addArrangedSubview(profileImageView)
-//        imageAndIconHStack.addArrangedSubview(searchIcon)
+        imageAndIconHStack.isLayoutMarginsRelativeArrangement = true
+        imageAndIconHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 5)
+
+        imageAndIconHStack.addArrangedSubview(searchIcon)
 //        imageAndIconHStack.addArrangedSubview(bellIcon)
 
         addSubview(imageAndIconHStack)
@@ -45,21 +48,24 @@ extension AccountSummaryHeader {
 
     public func layout() {
         // Size Image
-        profileImageView.contentMode = .scaleAspectFit
-        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
-        profileImageView.layer.cornerRadius = imageView.frame.size.width / 2
+//        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        profileImageView.layer.cornerRadius = 40
         profileImageView.clipsToBounds = true
+        profileImageView.backgroundColor = .yellow
+//        profileImageView.roundCornersForAspectFit(radius: 4)
 
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
 
 //            searchIcon.heightAnchor.constraint(equalToConstant: 30),
-//            searchIcon.widthAnchor.constraint(equalToConstant: 10),
+            searchIcon.widthAnchor.constraint(equalToConstant: 10),
 
 //            bellIcon.heightAnchor.constraint(equalToConstant: 40),
 //            bellIcon.widthAnchor.constraint(equalToConstant: 40),
         ])
+        
+        searchIcon.backgroundColor = .yellow
 
         NSLayoutConstraint.activate([
             imageAndIconHStack.topAnchor.constraint(equalTo: topAnchor),
