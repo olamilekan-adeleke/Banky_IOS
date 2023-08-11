@@ -37,7 +37,9 @@ extension AccountSummaryHeader {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
     }
 
-    public func layout() {}
+    public func layout() {
+        
+    }
 }
 
 // Component

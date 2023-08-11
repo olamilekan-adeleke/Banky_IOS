@@ -1,5 +1,5 @@
 //
-//  Labels.swift
+//  Component.swift
 //  Banky_IOS
 //
 //  Created by Enigma Kod on 11/08/2023.
@@ -19,4 +19,12 @@ func makeLabel(
     label.backgroundColor = isDebug ? .yellow : .clear
     label.font = UIFont.systemFont(ofSize: ofSize, weight: weight)
     return label
+}
+
+func makeImage(named: String) -> UIImageView {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.image = UIImage(named: named)
+    imageView.contentMode = .scaleAspectFit
+    return imageView
 }
