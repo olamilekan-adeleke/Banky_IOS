@@ -11,7 +11,7 @@ import UIKit
 class AccountSummaryHeader: UIView {
     static let height: CGFloat = 100
 
-    let imageAndIconHStack = UIStackView()
+//    let imageAndIconHStack = makeStack(axis: NSLayoutConstraint.Axis.horizontal)
     let profileImageView = makeImage(named: "person")
     let searchIcon = iconImageView(systemName: "bell.fill")
     let bellIcon = iconImageView(systemName: "bell.fill")

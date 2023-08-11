@@ -28,3 +28,10 @@ func makeImage(named: String) -> UIImageView {
     imageView.contentMode = .scaleAspectFit
     return imageView
 }
+
+func makeStack(axis: NSLayoutConstraint.Axis) -> UIStackView {
+    let stack = UIStackView()
+    stack.translatesAutoresizingMaskIntoConstraints = false
+    stack.axis = axis
+    return stack
+}
