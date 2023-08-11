@@ -35,3 +35,11 @@ func makeStack(axis: NSLayoutConstraint.Axis) -> UIStackView {
     stack.axis = axis
     return stack
 }
+
+func iconImageView(systemName: String) -> UIView {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.image = UIImage(systemName: systemName)
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+}

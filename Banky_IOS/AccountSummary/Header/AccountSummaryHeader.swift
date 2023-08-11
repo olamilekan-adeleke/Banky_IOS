@@ -11,7 +11,7 @@ import UIKit
 class AccountSummaryHeader: UIView {
     static let height: CGFloat = 100
 
-//    let imageAndIconHStack = makeStack(axis: NSLayoutConstraint.Axis.horizontal)
+    let imageAndIconHStack = makeStack(axis: NSLayoutConstraint.Axis.horizontal)
     let profileImageView = makeImage(named: "person")
     let searchIcon = iconImageView(systemName: "bell.fill")
     let bellIcon = iconImageView(systemName: "bell.fill")
@@ -28,29 +28,27 @@ class AccountSummaryHeader: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: self.bounds.width, height: 144)
+        return CGSize(width: bounds.width, height: 144)
     }
 }
 
 extension AccountSummaryHeader {
     public func style() {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+
+        imageAndIconHStack.addArrangedSubview(profileImageView)
+        imageAndIconHStack.addArrangedSubview(searchIcon)
+        imageAndIconHStack.addArrangedSubview(bellIcon)
+
+        addSubview(imageAndIconHStack)
     }
 
     public func layout() {
-        
-    }
-}
-
-// Component
-extension AccountSummaryHeader {
-    private static func iconImageView(systemName: String) -> UIView {
-        let view = UIView()
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: systemName)?.withRenderingMode(.alwaysTemplate)
-        view.addSubview(imageView)
-        return view
+        NSLayoutConstraint.activate([
+            imageAndIconHStack.topAnchor.constraint(equalTo: topAnchor),
+            imageAndIconHStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageAndIconHStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
     }
 }
 
