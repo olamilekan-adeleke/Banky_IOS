@@ -33,6 +33,8 @@ func makeStack(axis: NSLayoutConstraint.Axis) -> UIStackView {
     let stack = UIStackView()
     stack.translatesAutoresizingMaskIntoConstraints = false
     stack.axis = axis
+    stack.distribution = .fill
+    stack.alignment = .fill
     return stack
 }
 

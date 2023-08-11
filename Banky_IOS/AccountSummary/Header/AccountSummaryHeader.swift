@@ -44,6 +44,20 @@ extension AccountSummaryHeader {
     }
 
     public func layout() {
+        // Size Image
+        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 749), for: .horizontal)
+
+        NSLayoutConstraint.activate([
+            profileImageView.heightAnchor.constraint(equalToConstant: 80),
+            profileImageView.widthAnchor.constraint(equalToConstant: 80),
+
+            searchIcon.heightAnchor.constraint(equalToConstant: 40),
+            searchIcon.widthAnchor.constraint(equalToConstant: 40),
+
+            bellIcon.heightAnchor.constraint(equalToConstant: 40),
+            bellIcon.widthAnchor.constraint(equalToConstant: 40),
+        ])
+
         NSLayoutConstraint.activate([
             imageAndIconHStack.topAnchor.constraint(equalTo: topAnchor),
             imageAndIconHStack.leadingAnchor.constraint(equalTo: leadingAnchor),
