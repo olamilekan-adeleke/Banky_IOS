@@ -15,6 +15,8 @@ class AccountSummaryHeader: UIView {
     let profileImageView = makeImage(named: "person")
     let searchIcon = iconImageView(systemName: "bell.fill")
     let bellIcon = iconImageView(systemName: "bell.fill")
+    
+    let spacer = 
 
     override init(frame: CGRect) {
         super.init(frame: frame)

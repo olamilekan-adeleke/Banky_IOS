@@ -46,6 +46,16 @@ func iconImageView(systemName: String) -> UIView {
     return imageView
 }
 
+func makeHSpacer(width: CGFloat?) -> UIView {
+    var view = UIView(frame: .zero)
+    if width == width {
+        var widthAnchor = view.widthAnchor.constraint(equalToConstant: width!)
+        widthAnchor.priority = .init(999)
+        widthAnchor.isActive = true
+    }
+    return view
+}
+
 extension UIImageView {
     func roundCornersForAspectFit(radius: CGFloat) {
         if let image = self.image {
