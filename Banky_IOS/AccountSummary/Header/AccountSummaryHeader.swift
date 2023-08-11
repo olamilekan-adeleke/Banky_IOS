@@ -5,8 +5,9 @@
 //  Created by Enigma Kod on 03/08/2023.
 //
 
-import Foundation
+import SwiftUI
 import UIKit
+
 
 class AccountSummaryHeader: UIView {
     static let height: CGFloat = 100
@@ -26,6 +27,10 @@ class AccountSummaryHeader: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: self.bounds.width, height: 144)
     }
 }
 
@@ -54,29 +59,7 @@ extension AccountSummaryHeader {
     }
 
     public func layout() {
-        let iconStack = UIStackView(arrangedSubviews: [searchIcon, bellIcon])
-        iconStack.translatesAutoresizingMaskIntoConstraints = false
-        iconStack.axis = .horizontal
-//        iconStack.distribution = .
-
-        imageAndIconHStack.addArrangedSubview(profileImageView)
-        imageAndIconHStack.addArrangedSubview(iconStack)
-
-        addSubview(imageAndIconHStack)
-
-        // ImageAndIconHStack
-        NSLayoutConstraint.activate([
-            iconStack.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: 1),
-            // imageAndIconHStack.heightAnchor.constraint(equalToConstant: 50),
-            imageAndIconHStack.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: imageAndIconHStack.trailingAnchor, multiplier: 1),
-
-            profileImageView.heightAnchor.constraint(equalToConstant: 60),
-            profileImageView.widthAnchor.constraint(equalToConstant: 60),
-//
-//            searchIcon.heightAnchor.constraint(equalToConstant: 32),
-//            searchIcon.widthAnchor.constraint(equalToConstant: 32),
-        ])
+     
     }
 }
 
@@ -89,5 +72,22 @@ extension AccountSummaryHeader {
         imageView.image = UIImage(systemName: systemName)?.withRenderingMode(.alwaysTemplate)
         view.addSubview(imageView)
         return view
+    }
+}
+
+
+struct AccountSummaryHeaderRepresentable: UIViewRepresentable {
+    func makeUIView(context: Context) -> some UIView {
+        return AccountSummaryHeader()
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        
+    }
+}
+
+struct AccountSummaryHeader_Preview: PreviewProvider {
+    static var previews: some View {
+        return AccountSummaryHeaderRepresentable()
     }
 }

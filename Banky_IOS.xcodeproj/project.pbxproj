@@ -22,6 +22,7 @@
 		39EBC7902A6D3EFD006B3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC78F2A6D3EFD006B3139 /* Assets.xcassets */; };
 		39EBC7932A6D3EFD006B3139 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC7912A6D3EFD006B3139 /* LaunchScreen.storyboard */; };
 		39EBC79E2A6D423A006B3139 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC79D2A6D423A006B3139 /* LoginView.swift */; };
+		39FCC2BB2A86CC1D00A50A7A /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC2BA2A86CC1D00A50A7A /* Labels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		39EBC7922A6D3EFD006B3139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39EBC7942A6D3EFD006B3139 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39EBC79D2A6D423A006B3139 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		39FCC2BA2A86CC1D00A50A7A /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				390732F82A713BB600ED72A6 /* Onboarding */,
 				39EBC79C2A6D420C006B3139 /* Login */,
 				392ECEA22A7B17A80046D9AF /* AccountSummary */,
+				39FCC2B92A86CBF800A50A7A /* SharedComponent */,
 				392BD3442A74321400186D51 /* Utilis */,
 				39EBC79B2A6D41C2006B3139 /* Files */,
 			);
@@ -172,6 +175,14 @@
 				390733002A726F4800ED72A6 /* DummyHomeViewControler.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		39FCC2B92A86CBF800A50A7A /* SharedComponent */ = {
+			isa = PBXGroup;
+			children = (
+				39FCC2BA2A86CC1D00A50A7A /* Labels.swift */,
+			);
+			path = SharedComponent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 				390732FF2A726A0D00ED72A6 /* AuthStateViewController.swift in Sources */,
 				390732FA2A713BD700ED72A6 /* OnboardingContainerViewController.swift in Sources */,
 				392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */,
+				39FCC2BB2A86CC1D00A50A7A /* Labels.swift in Sources */,
 				392BD34E2A753E0900186D51 /* AppColor.swift in Sources */,
 				392BD3462A74322200186D51 /* LocalState.swift in Sources */,
 				392ECEA42A7B17CA0046D9AF /* AccountSummaryViewController.swift in Sources */,
