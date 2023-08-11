@@ -47,6 +47,8 @@ extension AccountSummaryHeader {
         // Size Image
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
+        profileImageView.layer.cornerRadius = imageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
 
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
