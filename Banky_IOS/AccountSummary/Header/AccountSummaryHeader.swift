@@ -15,8 +15,8 @@ class AccountSummaryHeader: UIView {
     let profileImageView = makeImage(named: "person")
     let searchIcon = iconImageView(systemName: "bell.fill")
     let bellIcon = iconImageView(systemName: "bell.fill")
-    
-    let spacer = 
+
+    let spacer = makeHSpacer(width: 20)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,35 +38,36 @@ extension AccountSummaryHeader {
     public func style() {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
+        spacer.backgroundColor = .red
+
         imageAndIconHStack.addArrangedSubview(profileImageView)
         imageAndIconHStack.isLayoutMarginsRelativeArrangement = true
         imageAndIconHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 5)
 
+        imageAndIconHStack.addArrangedSubview(spacer)
         imageAndIconHStack.addArrangedSubview(searchIcon)
-//        imageAndIconHStack.addArrangedSubview(bellIcon)
+        imageAndIconHStack.addArrangedSubview(bellIcon)
 
         addSubview(imageAndIconHStack)
     }
 
     public func layout() {
         // Size Image
-//        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         profileImageView.layer.cornerRadius = 40
         profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .yellow
-//        profileImageView.roundCornersForAspectFit(radius: 4)
 
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
 
 //            searchIcon.heightAnchor.constraint(equalToConstant: 30),
-            searchIcon.widthAnchor.constraint(equalToConstant: 10),
+            searchIcon.widthAnchor.constraint(equalToConstant: 20),
 
 //            bellIcon.heightAnchor.constraint(equalToConstant: 40),
-//            bellIcon.widthAnchor.constraint(equalToConstant: 40),
+            bellIcon.widthAnchor.constraint(equalToConstant: 20),
         ])
-        
+
         searchIcon.backgroundColor = .yellow
 
         NSLayoutConstraint.activate([

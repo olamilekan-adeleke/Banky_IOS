@@ -47,9 +47,9 @@ func iconImageView(systemName: String) -> UIView {
 }
 
 func makeHSpacer(width: CGFloat?) -> UIView {
-    var view = UIView(frame: .zero)
+    let view = UIView(frame: .zero)
     if width == width {
-        var widthAnchor = view.widthAnchor.constraint(equalToConstant: width!)
+        let widthAnchor = view.widthAnchor.constraint(equalToConstant: width!)
         widthAnchor.priority = .init(999)
         widthAnchor.isActive = true
     }
