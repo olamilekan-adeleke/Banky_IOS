@@ -37,25 +37,26 @@ extension AccountSummaryHeader {
         backgroundColor = UIColor.gray.withAlphaComponent(0.1)
 
         imageAndIconHStack.addArrangedSubview(profileImageView)
-        imageAndIconHStack.addArrangedSubview(searchIcon)
-        imageAndIconHStack.addArrangedSubview(bellIcon)
+//        imageAndIconHStack.addArrangedSubview(searchIcon)
+//        imageAndIconHStack.addArrangedSubview(bellIcon)
 
         addSubview(imageAndIconHStack)
     }
 
     public func layout() {
         // Size Image
-        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 749), for: .horizontal)
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
 
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
             profileImageView.widthAnchor.constraint(equalToConstant: 80),
 
-            searchIcon.heightAnchor.constraint(equalToConstant: 40),
-            searchIcon.widthAnchor.constraint(equalToConstant: 40),
+//            searchIcon.heightAnchor.constraint(equalToConstant: 30),
+//            searchIcon.widthAnchor.constraint(equalToConstant: 10),
 
-            bellIcon.heightAnchor.constraint(equalToConstant: 40),
-            bellIcon.widthAnchor.constraint(equalToConstant: 40),
+//            bellIcon.heightAnchor.constraint(equalToConstant: 40),
+//            bellIcon.widthAnchor.constraint(equalToConstant: 40),
         ])
 
         NSLayoutConstraint.activate([
