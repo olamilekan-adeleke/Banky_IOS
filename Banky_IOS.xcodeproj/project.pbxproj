@@ -23,6 +23,7 @@
 		39EBC7932A6D3EFD006B3139 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC7912A6D3EFD006B3139 /* LaunchScreen.storyboard */; };
 		39EBC79E2A6D423A006B3139 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC79D2A6D423A006B3139 /* LoginView.swift */; };
 		39FCC2BB2A86CC1D00A50A7A /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC2BA2A86CC1D00A50A7A /* Labels.swift */; };
+		39FCC2BD2A86D67F00A50A7A /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC2BC2A86D67F00A50A7A /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		39EBC7942A6D3EFD006B3139 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39EBC79D2A6D423A006B3139 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		39FCC2BA2A86CC1D00A50A7A /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		39FCC2BC2A86D67F00A50A7A /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				39FCC2BA2A86CC1D00A50A7A /* Labels.swift */,
+				39FCC2BC2A86D67F00A50A7A /* Images.swift */,
 			);
 			path = SharedComponent;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				390732FC2A7171D800ED72A6 /* OnboardingViewController.swift in Sources */,
 				39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */,
 				392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */,
+				39FCC2BD2A86D67F00A50A7A /* Images.swift in Sources */,
 				390732FF2A726A0D00ED72A6 /* AuthStateViewController.swift in Sources */,
 				390732FA2A713BD700ED72A6 /* OnboardingContainerViewController.swift in Sources */,
 				392BD34C2A753D9700186D51 /* UIViewController+Extension.swift in Sources */,
