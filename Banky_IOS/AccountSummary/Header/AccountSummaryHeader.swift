@@ -13,7 +13,7 @@ class AccountSummaryHeader: UIView {
 
     let imageAndIconHStack = makeStack(axis: NSLayoutConstraint.Axis.horizontal)
     let profileImageView = makeImage(named: "person")
-    let searchIcon = iconImageView(systemName: "bell.fill")
+    let searchIcon = iconImageView(systemName: "magnifyingglass")
     let bellIcon = iconImageView(systemName: "bell.fill")
 
     let spacer = makeHSpacer(width: 20)
@@ -36,7 +36,7 @@ class AccountSummaryHeader: UIView {
 
 extension AccountSummaryHeader {
     public func style() {
-        backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        backgroundColor = UIColor.gray.withAlphaComponent(0.5)
 
         spacer.backgroundColor = .red
 
@@ -47,19 +47,19 @@ extension AccountSummaryHeader {
         imageAndIconHStack.addArrangedSubview(spacer)
         imageAndIconHStack.addArrangedSubview(searchIcon)
         imageAndIconHStack.addArrangedSubview(bellIcon)
-        
-        imageAndIconHStack.setCustomSpacing(40, after: bellIcon)
+
+        imageAndIconHStack.setCustomSpacing(10, after: searchIcon)
 
         addSubview(imageAndIconHStack)
     }
 
     public func layout() {
-        // Size Image
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 40
         profileImageView.clipsToBounds = true
-        profileImageView.backgroundColor = .yellow
+//        profileImageView.backgroundColor = .yellow
 
-        searchIcon.backgroundColor = .yellow
+//        searchIcon.backgroundColor = .yellow
 
         NSLayoutConstraint.activate([
             profileImageView.heightAnchor.constraint(equalToConstant: 80),
