@@ -9,6 +9,18 @@ import SwiftUI
 import UIKit
 
 class AccountSummaryCell: UITableViewCell {
+    enum AccountType: String {
+        case Banking
+        case CreditCard
+        case Investment
+    }
+
+    struct ViewModel {
+        let accountType: AccountType
+        let accountName: String
+    }
+
+    let viewModel: ViewModel? = nil
     static let cellHeight: CGFloat = 100
     static let cellReuseID: String = "AccountSummaryCell"
 
@@ -36,6 +48,20 @@ class AccountSummaryCell: UITableViewCell {
 }
 
 extension AccountSummaryCell {
+    public func configure(with vm: ViewModel) {
+        typeLabel.text = vm.accountType.rawValue
+//        nameLabel.text = vm.accountName
+
+        switch vm.accountType {
+            case .Banking:
+                break
+            case .CreditCard:
+                break
+            case .Investment:
+                break
+        }
+    }
+
     private func setUpStyle() {
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         typeLabel.text = "Account Type"
