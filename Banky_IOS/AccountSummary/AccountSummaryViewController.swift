@@ -20,6 +20,7 @@ class AccountSummaryViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.cellReuseID)
     }
 }
 
@@ -30,6 +31,8 @@ extension AccountSummaryViewController {
         tableView.dataSource = self
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountSummaryCell")
+        tableView.rowHeight = AccountSummaryCell.cellHeight
+        tableView.tableFooterView = UIView()
 
         layout()
     }
@@ -47,11 +50,8 @@ extension AccountSummaryViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountSummaryCell", for: indexPath)
-        var config = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.cellReuseID, for: indexPath) as! AccountSummaryCell
 
-        config.text = games[indexPath.row]
-        cell.contentConfiguration = config
         return cell
     }
 

@@ -17,6 +17,7 @@
 		392BD34E2A753E0900186D51 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BD34D2A753E0900186D51 /* AppColor.swift */; };
 		392ECEA42A7B17CA0046D9AF /* AccountSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ECEA32A7B17CA0046D9AF /* AccountSummaryViewController.swift */; };
 		392ECEA82A7B21310046D9AF /* AccountSummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ECEA72A7B21310046D9AF /* AccountSummaryHeader.swift */; };
+		3957CB9B2A8B865C00AB7E14 /* AccountSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3957CB9A2A8B865C00AB7E14 /* AccountSummaryCell.swift */; };
 		39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */; };
 		39EBC78B2A6D3EFB006B3139 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */; };
 		39EBC7902A6D3EFD006B3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39EBC78F2A6D3EFD006B3139 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		392BD34D2A753E0900186D51 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		392ECEA32A7B17CA0046D9AF /* AccountSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryViewController.swift; sourceTree = "<group>"; };
 		392ECEA72A7B21310046D9AF /* AccountSummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryHeader.swift; sourceTree = "<group>"; };
+		3957CB9A2A8B865C00AB7E14 /* AccountSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryCell.swift; sourceTree = "<group>"; };
 		39EBC7832A6D3EFB006B3139 /* Banky_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banky_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EBC7862A6D3EFB006B3139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39EBC78A2A6D3EFB006B3139 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		392ECEA62A7B17D80046D9AF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3957CB9A2A8B865C00AB7E14 /* AccountSummaryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				392ECEA82A7B21310046D9AF /* AccountSummaryHeader.swift in Sources */,
 				390732FC2A7171D800ED72A6 /* OnboardingViewController.swift in Sources */,
 				39EBC7872A6D3EFB006B3139 /* AppDelegate.swift in Sources */,
+				3957CB9B2A8B865C00AB7E14 /* AccountSummaryCell.swift in Sources */,
 				392BD3492A753BFA00186D51 /* HomeViewController.swift in Sources */,
 				390732FF2A726A0D00ED72A6 /* AuthStateViewController.swift in Sources */,
 				390732FA2A713BD700ED72A6 /* OnboardingContainerViewController.swift in Sources */,

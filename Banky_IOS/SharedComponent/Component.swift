@@ -29,12 +29,18 @@ func makeImage(named: String) -> UIImageView {
     return imageView
 }
 
-func makeStack(axis: NSLayoutConstraint.Axis) -> UIStackView {
+func makeStack(
+    axis: NSLayoutConstraint.Axis,
+    distribution: UIStackView.Distribution = .fill,
+    alignment: UIStackView.Alignment = .leading,
+    debug: Bool = false
+) -> UIStackView {
     let stack = UIStackView()
     stack.translatesAutoresizingMaskIntoConstraints = false
     stack.axis = axis
     stack.distribution = .fill
-    stack.alignment = .fill
+    stack.alignment = alignment
+    stack.backgroundColor = debug ? UIColor.yellow : UIColor.clear
     return stack
 }
 
@@ -53,6 +59,13 @@ func makeHSpacer(width: CGFloat?) -> UIView {
         widthAnchor.priority = .init(999)
         widthAnchor.isActive = true
     }
+    return view
+}
+
+func makeView(debug: Bool = false) -> UIView {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = debug ? .yellow : .clear
     return view
 }
 
