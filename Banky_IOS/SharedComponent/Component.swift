@@ -16,7 +16,7 @@ func makeLabel(
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = text
-    label.backgroundColor = debug ? .yellow : .clear
+    label.backgroundColor = debug ? .red : .clear
     label.font = UIFont.systemFont(ofSize: ofSize, weight: weight)
     return label
 }
@@ -25,6 +25,14 @@ func makeImage(named: String) -> UIImageView {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.image = UIImage(named: named)
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+}
+
+func makeIconImage(systemName: String) -> UIImageView {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.image = UIImage(systemName: systemName)
     imageView.contentMode = .scaleAspectFit
     return imageView
 }

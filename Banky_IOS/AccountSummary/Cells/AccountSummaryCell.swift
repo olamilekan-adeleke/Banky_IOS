@@ -12,14 +12,16 @@ class AccountSummaryCell: UITableViewCell {
     static let cellHeight: CGFloat = 100
     static let cellReuseID: String = "AccountSummaryCell"
 
-    let leftVStack = makeStack(axis: .vertical, debug: true)
+    let leftVStack = makeStack(axis: .vertical)
     let typeLabel = makeLabel(withText: "")
     let underlineView = makeView()
     let nameLabel = makeLabel(withText: "")
 
-    let rightVStack = makeStack(axis: .vertical, distribution: .fill, alignment: .trailing, debug: true)
-    let balanceLabel = makeLabel(withText: "", debug: true)
-    let balanceAmountLabel = makeLabel(withText: "", debug: true)
+    let rightVStack = makeStack(axis: .vertical, alignment: .trailing)
+    let balanceLabel = makeLabel(withText: "")
+    let balanceAmountLabel = makeLabel(withText: "")
+
+    let iconImage = makeIconImage(systemName: "chevron.right")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,6 +63,9 @@ extension AccountSummaryCell {
         rightVStack.addArrangedSubview(balanceAmountLabel)
 
         contentView.addSubview(rightVStack)
+
+        iconImage.image = iconImage.image?.withTintColor(AppColor.primaryColor, renderingMode: .alwaysOriginal)
+        contentView.addSubview(iconImage)
     }
 
     private func layout() {
@@ -76,10 +81,16 @@ extension AccountSummaryCell {
 
         // Right Stack
         NSLayoutConstraint.activate([
-            rightVStack.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
+            // rightVStack.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: rightVStack.trailingAnchor, multiplier: 4),
             rightVStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 60),
             rightVStack.centerYAnchor.constraint(equalToSystemSpacingBelow: leftVStack.centerYAnchor, multiplier: 0),
+        ])
+
+        // Icon Image
+        NSLayoutConstraint.activate([
+            trailingAnchor.constraint(equalToSystemSpacingAfter: iconImage.trailingAnchor, multiplier: 2),
+            iconImage.centerYAnchor.constraint(equalTo: leftVStack.centerYAnchor),
         ])
     }
 }
