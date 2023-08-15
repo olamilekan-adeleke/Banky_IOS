@@ -11,12 +11,12 @@ func makeLabel(
     withText text: String,
     ofSize: CGFloat = 16,
     weight: UIFont.Weight = .medium,
-    isDebug: Bool = false
+    debug: Bool = false
 ) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = text
-    label.backgroundColor = isDebug ? .yellow : .clear
+    label.backgroundColor = debug ? .yellow : .clear
     label.font = UIFont.systemFont(ofSize: ofSize, weight: weight)
     return label
 }

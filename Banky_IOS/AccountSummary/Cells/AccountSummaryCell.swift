@@ -17,9 +17,9 @@ class AccountSummaryCell: UITableViewCell {
     let underlineView = makeView()
     let nameLabel = makeLabel(withText: "")
 
-    let rightVStack = makeStack(axis: .vertical, alignment: .trailing, debug: true)
-    let balanceLabel = makeLabel(withText: "")
-    let balanceAmountLabel = makeLabel(withText: "")
+    let rightVStack = makeStack(axis: .vertical, distribution: .fill, alignment: .trailing, debug: true)
+    let balanceLabel = makeLabel(withText: "", debug: true)
+    let balanceAmountLabel = makeLabel(withText: "", debug: true)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
