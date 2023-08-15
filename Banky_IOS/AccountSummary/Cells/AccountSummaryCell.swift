@@ -18,6 +18,11 @@ class AccountSummaryCell: UITableViewCell {
     struct ViewModel {
         let accountType: AccountType
         let accountName: String
+        let balance: Decimal
+
+        var balanaceAsAtribbutedString: NSAttributedString {
+            return CurrencyFormatter().makeAttributedCurrency(balance)
+        }
     }
 
     let viewModel: ViewModel? = nil
@@ -50,21 +55,25 @@ class AccountSummaryCell: UITableViewCell {
 extension AccountSummaryCell {
     public func configure(with vm: ViewModel) {
         typeLabel.text = vm.accountType.rawValue
-//        nameLabel.text = vm.accountName
+        nameLabel.text = vm.accountName
+        balanceAmountLabel.attributedText = vm.balanaceAsAtribbutedString
 
         switch vm.accountType {
             case .Banking:
-                break
+                underlineView.backgroundColor = AppColor.primaryColor
+                balanceLabel.text = "Current Balance"
             case .CreditCard:
-                break
+                underlineView.backgroundColor = .systemOrange
+                balanceLabel.text = "Current Balance"
             case .Investment:
-                break
+                underlineView.backgroundColor = .systemPurple
+                balanceLabel.text = "Value"
         }
     }
 
     private func setUpStyle() {
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        typeLabel.text = "Account Type"
+        typeLabel.text = ""
         leftVStack.addArrangedSubview(typeLabel)
 
         underlineView.backgroundColor = AppColor.primaryColor
@@ -72,20 +81,19 @@ extension AccountSummaryCell {
         leftVStack.addArrangedSubview(underlineView)
 
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        nameLabel.text = "Account Name"
+        nameLabel.text = ""
         nameLabel.numberOfLines = 0
         leftVStack.setCustomSpacing(16, after: underlineView)
         leftVStack.addArrangedSubview(nameLabel)
 
         contentView.addSubview(leftVStack)
 
-        balanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        balanceLabel.text = "Some Balance"
+        balanceLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        balanceLabel.text = ""
         balanceLabel.textAlignment = .right
         rightVStack.addArrangedSubview(balanceLabel)
-
+ 
         balanceAmountLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        balanceAmountLabel.attributedText = makeFormattedAmount(amount: "929,466", cent: "45")
         balanceLabel.textAlignment = .right
         rightVStack.addArrangedSubview(balanceAmountLabel)
 
@@ -120,27 +128,29 @@ extension AccountSummaryCell {
         ])
     }
 
-    private func makeFormattedAmount(amount: String, cent: String) -> NSMutableAttributedString {
-        let currencySignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
-        let amountAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title3)]
-        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
-
-        let rootString = NSMutableAttributedString(string: "\u{20A6}", attributes: currencySignAttributes)
-        let amountString = NSMutableAttributedString(string: amount, attributes: amountAttributes)
-        let centString = NSMutableAttributedString(string: cent, attributes: centAttributes)
-
-        rootString.append(amountString)
-        rootString.append(centString)
-
-        return rootString
-    }
+//    private func makeFormattedAmount(amount: String, cent: String) -> NSMutableAttributedString {
+//        let currencySignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
+//        let amountAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title3)]
+//        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
+//
+//        let rootString = NSMutableAttributedString(string: "\u{20A6}", attributes: currencySignAttributes)
+//        let amountString = NSMutableAttributedString(string: amount, attributes: amountAttributes)
+//        let centString = NSMutableAttributedString(string: cent, attributes: centAttributes)
+//
+//        rootString.append(amountString)
+//        rootString.append(centString)
+//
+//        return rootString
+//    }
 }
 
 // MARK: - UI Preview
 
 struct AccountSummaryCellRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> some UIView {
-        return AccountSummaryCell(style: .default, reuseIdentifier: "ID")
+        let cellView = AccountSummaryCell(style: .default, reuseIdentifier: "ID")
+        cellView.configure(with: AccountSummaryCell.ViewModel(accountType: .Banking, accountName: "Sapa Savings", balance: 989719.09))
+        return cellView
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {}
