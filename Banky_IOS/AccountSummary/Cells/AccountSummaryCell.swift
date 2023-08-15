@@ -47,6 +47,7 @@ extension AccountSummaryCell {
 
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
         nameLabel.text = "Account Name"
+        nameLabel.numberOfLines = 0
         leftVStack.setCustomSpacing(16, after: underlineView)
         leftVStack.addArrangedSubview(nameLabel)
 
@@ -58,7 +59,7 @@ extension AccountSummaryCell {
         rightVStack.addArrangedSubview(balanceLabel)
 
         balanceAmountLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        balanceAmountLabel.text = "$929,466,63"
+        balanceAmountLabel.attributedText = makeFormattedAmount(amount: "929,466", cent: "45")
         balanceLabel.textAlignment = .right
         rightVStack.addArrangedSubview(balanceAmountLabel)
 
@@ -81,9 +82,8 @@ extension AccountSummaryCell {
 
         // Right Stack
         NSLayoutConstraint.activate([
-            // rightVStack.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: rightVStack.trailingAnchor, multiplier: 4),
-            rightVStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 60),
+            rightVStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 40),
             rightVStack.centerYAnchor.constraint(equalToSystemSpacingBelow: leftVStack.centerYAnchor, multiplier: 0),
         ])
 
@@ -92,6 +92,21 @@ extension AccountSummaryCell {
             trailingAnchor.constraint(equalToSystemSpacingAfter: iconImage.trailingAnchor, multiplier: 2),
             iconImage.centerYAnchor.constraint(equalTo: leftVStack.centerYAnchor),
         ])
+    }
+
+    private func makeFormattedAmount(amount: String, cent: String) -> NSMutableAttributedString {
+        let currencySignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
+        let amountAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title3)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .baselineOffset: 8]
+
+        let rootString = NSMutableAttributedString(string: "\u{20A6}", attributes: currencySignAttributes)
+        let amountString = NSMutableAttributedString(string: amount, attributes: amountAttributes)
+        let centString = NSMutableAttributedString(string: cent, attributes: centAttributes)
+
+        rootString.append(amountString)
+        rootString.append(centString)
+
+        return rootString
     }
 }
 
