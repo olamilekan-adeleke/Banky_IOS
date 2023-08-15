@@ -22,10 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         loginViewController.delegate = self
         onboardingViewController.delegate = self
-//        homeView.logOurDelegate = self
+        // homeView.logOurDelegate = self
 
         window?.rootViewController = homeView
-//        window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
+        // window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
         return true
     }
 }

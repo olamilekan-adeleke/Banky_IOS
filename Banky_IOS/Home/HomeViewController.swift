@@ -32,7 +32,7 @@ class HomeViewController: UITabBarController {
         hideNavigationBarLine(summaryNC.navigationBar)
 
         let tabBarList = [summaryNC, moneyNC, moreNC]
-        
+
         viewControllers = tabBarList
     }
 
@@ -45,11 +45,11 @@ class HomeViewController: UITabBarController {
         let image = UIImage()
         navigationBar.shadowImage = image
         navigationBar.setBackgroundImage(image, for: .default)
-        navigationBar.isTranslucent = false
+        // navigationBar.isTranslucent = false
+        // navigationBar.backgroundColor = .red
         navigationBar.isHidden = true
     }
 }
-
 
 class MoveMoneyViewController: UIViewController {
     override func viewDidLoad() {

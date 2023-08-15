@@ -11,6 +11,7 @@ import UIKit
 class AccountSummaryViewController: UIViewController {
     private var accounts: [AccountSummaryCell.ViewModel] = []
     let tableView = UITableView()
+    let header = AccountSummaryHeader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,24 @@ extension AccountSummaryViewController {
         tableView.rowHeight = AccountSummaryCell.cellHeight
         tableView.tableFooterView = UIView()
 
+        header.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = header
+        tableView.tableHeaderView?.layoutIfNeeded()
+        // tableView.tableHeaderView = tableView.tableHeaderView
+
         layout()
     }
 
     private func layout() {
         view.addSubview(tableView)
+
+        // Header
+
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: tableView.topAnchor),
+            header.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            header.widthAnchor.constraint(equalTo: tableView.widthAnchor),
+        ])
     }
 }
 
@@ -58,14 +72,6 @@ extension AccountSummaryViewController: UITableViewDataSource {
         cell.configure(with: account)
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return AccountSummaryHeader()
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return AccountSummaryHeader.height
     }
 }
 
