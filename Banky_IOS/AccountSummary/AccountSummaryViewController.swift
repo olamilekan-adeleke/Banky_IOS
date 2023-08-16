@@ -48,7 +48,6 @@ extension AccountSummaryViewController {
         view.addSubview(tableView)
 
         // Header
-
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: tableView.topAnchor),
             header.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),

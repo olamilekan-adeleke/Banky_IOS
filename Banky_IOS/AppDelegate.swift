@@ -22,10 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         loginViewController.delegate = self
         onboardingViewController.delegate = self
-        // homeView.logOurDelegate = self
 
-        window?.rootViewController = homeView
-        // window?.rootViewController = UserLocalState.hasOnboarded ? loginViewController : onboardingViewController
+        setUpLogOutListener()
+        handleRootView()
+
         return true
     }
 }
@@ -37,6 +37,14 @@ extension AppDelegate: LoginViewControllerDelegete, LogOutDelegate {
 
     func didLogOut() {
         setRootViewController(loginViewController)
+    }
+
+    @objc private func handleRootView() {
+        if UserLocalState.hasOnboarded {
+            window?.rootViewController = loginViewController
+        } else {
+            window?.rootViewController = onboardingViewController
+        }
     }
 }
 
@@ -63,5 +71,9 @@ extension AppDelegate {
                           options: .transitionCrossDissolve,
                           animations: nil,
                           completion: nil)
+    }
+
+    private func setUpLogOutListener() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRootView), name: .logOut, object: nil)
     }
 }

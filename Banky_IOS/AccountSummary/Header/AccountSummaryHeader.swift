@@ -11,12 +11,9 @@ import UIKit
 class AccountSummaryHeader: UIView {
     static let height: CGFloat = 100
 
-    let imageAndIconHStack = makeStack(axis: NSLayoutConstraint.Axis.horizontal)
     let profileImageView = makeImage(named: "person")
-    let searchIcon = iconImageView(systemName: "magnifyingglass")
     let bellIcon = iconImageView(systemName: "bell.fill")
-
-    let spacer = makeHSpacer(width: 20)
+    let logOutIcon = iconImageView(systemName: "rectangle.portrait.and.arrow.forward")
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,41 +35,18 @@ extension AccountSummaryHeader {
     public func style() {
         backgroundColor = UIColor.gray.withAlphaComponent(0.5)
 
-        spacer.backgroundColor = .red
+        logOutIcon.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
 
-        imageAndIconHStack.addArrangedSubview(profileImageView)
-        imageAndIconHStack.isLayoutMarginsRelativeArrangement = true
-        imageAndIconHStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 5)
+        logOutIcon.addGestureRecognizer(tapGestureRecognizer)
 
-        imageAndIconHStack.addArrangedSubview(spacer)
-        imageAndIconHStack.addArrangedSubview(searchIcon)
-        imageAndIconHStack.addArrangedSubview(bellIcon)
-
-        imageAndIconHStack.setCustomSpacing(10, after: searchIcon)
-
-        addSubview(imageAndIconHStack)
+        addSubview(logOutIcon)
     }
 
     public func layout() {
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 40
-        profileImageView.clipsToBounds = true
-//        profileImageView.backgroundColor = .yellow
-
-//        searchIcon.backgroundColor = .yellow
-
         NSLayoutConstraint.activate([
-            profileImageView.heightAnchor.constraint(equalToConstant: 80),
-            profileImageView.widthAnchor.constraint(equalToConstant: 80),
-
-            searchIcon.widthAnchor.constraint(equalToConstant: 20),
-            bellIcon.widthAnchor.constraint(equalToConstant: 20),
-        ])
-
-        NSLayoutConstraint.activate([
-            imageAndIconHStack.topAnchor.constraint(equalTo: topAnchor),
-            imageAndIconHStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageAndIconHStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            logOutIcon.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            logOutIcon.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
         ])
     }
 }
@@ -88,5 +62,13 @@ struct AccountSummaryHeaderRepresentable: UIViewRepresentable {
 struct AccountSummaryHeader_Preview: PreviewProvider {
     static var previews: some View {
         return AccountSummaryHeaderRepresentable()
+    }
+}
+
+// MARK: - Actions
+
+extension AccountSummaryHeader {
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        NotificationCenter.default.post(name: NSNotification.Name.logOut, object: nil)
     }
 }
