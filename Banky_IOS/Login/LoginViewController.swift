@@ -36,6 +36,9 @@ class LoginViewController: UIViewController {
     var username: String? { loginView.usernameTextField.text }
     var password: String? { loginView.passwordTextField.text }
 
+    var titleLeadingAnchor: NSLayoutConstraint?
+    var subtitleLeadingAnchor: NSLayoutConstraint?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -46,6 +49,11 @@ class LoginViewController: UIViewController {
         super.viewDidDisappear(animated)
         button.configuration?.showsActivityIndicator = false
         loginView.clearForm()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateValue()
     }
 }
 
@@ -64,6 +72,7 @@ extension LoginViewController {
         titleLabel.text = "Banky"
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleLabel.textAlignment = .center
+        titleLabel.alpha = 0
 
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.text = "Banking The Unbank Like They Do Say"
@@ -80,14 +89,16 @@ extension LoginViewController {
         view.addSubview(errorMesage)
 
         // TitleLabels
+        titleLeadingAnchor = titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1000)
+        subtitleLeadingAnchor = subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1000)
+        titleLeadingAnchor?.isActive = true
+        subtitleLeadingAnchor?.isActive = true
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 10),
-            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 10),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 10),
+            view.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16),
 
             subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0.5),
-            subtitleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: subtitleLabel.trailingAnchor, multiplier: 5),
+            subtitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
 
         // LoginView
@@ -113,6 +124,26 @@ extension LoginViewController {
             errorMesage.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
         ])
     }
+
+    private func animateValue() {
+        let animator = UIViewPropertyAnimator(duration: 0.8, curve: .easeInOut) {
+            self.titleLeadingAnchor?.constant = 16
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
+
+        let animator2 = UIViewPropertyAnimator(duration: 0.8, curve: .easeInOut) {
+            self.subtitleLeadingAnchor?.constant = 16
+            self.view.layoutIfNeeded()
+        }
+        animator2.startAnimation(afterDelay: 0.25)
+
+        let animator3 = UIViewPropertyAnimator(duration: 0.9 * 2, curve: .easeInOut) {
+            self.titleLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        animator3.startAnimation(afterDelay: 0.25)
+    }
 }
 
 // MARK: - Actions
@@ -124,6 +155,8 @@ extension LoginViewController {
     }
 
     private func login() {
+//        delegate?.didLogin()
+
         guard let username = username, let password = password else {
             assertionFailure("Username / Password should never be nill")
             return
