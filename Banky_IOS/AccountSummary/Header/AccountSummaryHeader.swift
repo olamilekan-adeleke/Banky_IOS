@@ -12,7 +12,7 @@ class AccountSummaryHeader: UIView {
     static let height: CGFloat = 100
 
     let profileImageView = makeImage(named: "person")
-    let bellIcon = iconImageView(systemName: "bell.fill")
+    let bellIcon = ShakeyBellView()
     let logOutIcon = iconImageView(systemName: "rectangle.portrait.and.arrow.forward")
 
     override init(frame: CGRect) {
@@ -37,16 +37,22 @@ extension AccountSummaryHeader {
 
         logOutIcon.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-
         logOutIcon.addGestureRecognizer(tapGestureRecognizer)
 
+        bellIcon.translatesAutoresizingMaskIntoConstraints = false
+//        bellIcon.backgroundColor = .yellow
+
         addSubview(logOutIcon)
+        addSubview(bellIcon)
     }
 
     public func layout() {
         NSLayoutConstraint.activate([
             logOutIcon.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            logOutIcon.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
+            logOutIcon.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+
+            bellIcon.topAnchor.constraint(equalTo: topAnchor),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: bellIcon.trailingAnchor, multiplier: 0),
         ])
     }
 }
