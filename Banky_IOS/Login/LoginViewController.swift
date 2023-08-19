@@ -155,8 +155,6 @@ extension LoginViewController {
     }
 
     private func login() {
-//        delegate?.didLogin()
-
         guard let username = username, let password = password else {
             assertionFailure("Username / Password should never be nill")
             return
@@ -179,5 +177,16 @@ extension LoginViewController {
     private func showErrorMessage(withMessage message: String) {
         errorMesage.isHidden = false
         errorMesage.text = message
+        shakeButton()
+    }
+
+    private func shakeButton() {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, 0]
+        animation.keyTimes = [0, 0.16, 0.5, 0.83, 1]
+        animation.duration = 0.4
+        animation.isAdditive = true
+        button.layer.add(animation, forKey: "shake_it")
     }
 }
