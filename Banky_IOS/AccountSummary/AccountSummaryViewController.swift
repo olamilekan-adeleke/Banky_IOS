@@ -13,6 +13,10 @@ class AccountSummaryViewController: UIViewController {
     let tableView = UITableView()
     let header = AccountSummaryHeader()
 
+    var profile: Profile?
+    var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
+    var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
