@@ -106,7 +106,6 @@ extension AccountSummaryViewController {
             switch result {
                 case .success(let accountsList):
                     self.accountList = accountsList
-                    self.configureTableViewCell(with: accountsList)
                 case .failure(let error):
                     print(error.localizedDescription)
             }
@@ -114,9 +113,11 @@ extension AccountSummaryViewController {
         }
 
         group.notify(queue: .main) {
+            self.refeashControl.endRefreshing()
+
+            self.configureTableViewCell(with: self.accountList)
             self.isLoading = false
             self.tableView.reloadData()
-            self.refeashControl.endRefreshing()
         }
     }
 
@@ -127,6 +128,11 @@ extension AccountSummaryViewController {
     }
 
     @objc private func refreshContent() {
+        // reset data
+        profile = nil
+        accountList = []
+        isLoading = true
+        tableView.reloadData()
         fetchData()
     }
 }
