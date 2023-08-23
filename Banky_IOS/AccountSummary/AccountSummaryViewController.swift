@@ -20,16 +20,17 @@ class AccountSummaryViewController: UIViewController {
     let header = AccountSummaryHeader()
     let refeashControl = UIRefreshControl()
 
+    var isLoading: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         setUp()
+        populateWithSkeletonCell()
+        fetchData()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-        tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.cellReuseID)
     }
 }
 
@@ -38,8 +39,10 @@ extension AccountSummaryViewController {
         tableView.sectionHeaderTopPadding = 0
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.frame = view.bounds
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountSummaryCell")
+        tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.cellReuseID)
+        tableView.register(SkeletonCell.self, forCellReuseIdentifier: SkeletonCell.reuseID)
         tableView.rowHeight = AccountSummaryCell.cellHeight
         tableView.tableFooterView = UIView()
 
@@ -75,16 +78,26 @@ extension AccountSummaryViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard accountCellViewModels.isEmpty == false else { return UITableViewCell() }
+        let account = accountCellViewModels[indexPath.row]
+
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SkeletonCell.reuseID, for: indexPath) as! SkeletonCell
+            return cell
+        }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.cellReuseID, for: indexPath) as! AccountSummaryCell
-        let account = accountCellViewModels[indexPath.row]
         cell.configure(with: account)
-
         return cell
     }
 }
 
 extension AccountSummaryViewController {
+    private func populateWithSkeletonCell() {
+        let cell = Account(id: "", type: .Banking, name: "", amount: 0, createdDateTime: Date())
+        accountList = Array(repeating: cell, count: 10)
+        configureTableViewCell(with: accountList)
+    }
+
     private func fetchData() {
         let group = DispatchGroup()
 
@@ -101,6 +114,7 @@ extension AccountSummaryViewController {
         }
 
         group.notify(queue: .main) {
+            self.isLoading = false
             self.tableView.reloadData()
             self.refeashControl.endRefreshing()
         }
