@@ -47,3 +47,39 @@ extension AccountSummaryHeader {
         }.resume()
     }
 }
+
+// MARK: - Account
+
+struct Account: Codable {
+    let id: Int
+    let type: AccountType
+    let name: String
+    let amount: Decimal
+    let createdDateTime: Date
+}
+
+extension AccountSummaryViewController {
+    private func fetchAccount(forUserID userID: String, completion: @escaping (Result<[Account], NetworkError>) -> Void) {
+        guard let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userID)/accounts") else {
+            return completion(.failure(.invaildURL))
+        }
+
+        let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                return completion(.failure(.serverError))
+            }
+
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.dateDecodingStrategy = .iso8601
+
+                let accounts: [Account] = try jsonDecoder.decode([Account].self, from: data)
+                return completion(.success(accounts))
+            } catch {
+                return completion(.failure(.decodingError))
+            }
+        }
+
+        dataTask.resume()
+    }
+}
