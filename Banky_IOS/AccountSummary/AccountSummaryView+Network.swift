@@ -11,6 +11,28 @@ enum NetworkError: Error {
     case serverError
     case decodingError
     case invaildURL
+
+    func getMessage() -> String {
+        switch self {
+            case .serverError:
+                return "Ensure you are connected to the internet. Please try again."
+            case .decodingError:
+                return "We could not process your request. Please try again."
+            case .invaildURL:
+                return "Invalid URL was given, check the URL and try again."
+        }
+    }
+
+    func getTitle() -> String {
+        switch self {
+            case .serverError:
+                return "Server Error"
+            case .decodingError:
+                return "Decoding / Format Error"
+            case .invaildURL:
+                return "Invalid URL"
+        }
+    }
 }
 
 struct Profile: Codable {
@@ -78,7 +100,7 @@ extension AccountSummaryViewController {
                     let accounts: [Account] = try jsonDecoder.decode([Account].self, from: data)
                     return completion(.success(accounts))
                 } catch {
-                    return completion(.failure(.decodingError))
+                    completion(.failure(.decodingError))
                 }
             }
         }

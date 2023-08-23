@@ -99,6 +99,7 @@ extension AccountSummaryViewController {
     }
 
     private func fetchData() {
+        var hasError = false
         let group = DispatchGroup()
 
         group.enter()
@@ -107,13 +108,16 @@ extension AccountSummaryViewController {
                 case .success(let accountsList):
                     self.accountList = accountsList
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    hasError = true
+                    self.showErrorAlert(error)
             }
             group.leave()
         }
 
         group.notify(queue: .main) {
             self.refeashControl.endRefreshing()
+
+            if hasError { return }
 
             self.configureTableViewCell(with: self.accountList)
             self.isLoading = false
@@ -134,5 +138,12 @@ extension AccountSummaryViewController {
         isLoading = true
         tableView.reloadData()
         fetchData()
+    }
+
+    private func showErrorAlert(_ error: NetworkError) {
+        let alert = UIAlertController(title: error.getTitle(), message: error.getMessage(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+
+        present(alert, animated: true)
     }
 }
