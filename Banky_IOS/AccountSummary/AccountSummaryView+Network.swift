@@ -59,7 +59,7 @@ struct Account: Codable {
 }
 
 extension AccountSummaryViewController {
-    private func fetchAccount(forUserID userID: String, completion: @escaping (Result<[Account], NetworkError>) -> Void) {
+    func fetchAccount(forUserID userID: String, completion: @escaping (Result<[Account], NetworkError>) -> Void) {
         guard let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userID)/accounts") else {
             return completion(.failure(.invaildURL))
         }
