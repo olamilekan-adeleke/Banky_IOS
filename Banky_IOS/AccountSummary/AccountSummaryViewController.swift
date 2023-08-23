@@ -10,13 +10,15 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     private var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
-    let tableView = UITableView()
-    let header = AccountSummaryHeader()
 
     private var accountList: [Account] = []
     var profile: Profile?
 //    var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
 //    var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
+
+    let tableView = UITableView()
+    let header = AccountSummaryHeader()
+    let refeashControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,10 @@ extension AccountSummaryViewController {
         header.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView = header
         tableView.tableHeaderView?.layoutIfNeeded()
+
+        refeashControl.tintColor = AppColor.primaryColor
+        refeashControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        tableView.refreshControl = refeashControl
 
         layout()
     }
@@ -80,16 +86,23 @@ extension AccountSummaryViewController: UITableViewDataSource {
 
 extension AccountSummaryViewController {
     private func fetchData() {
+        let group = DispatchGroup()
+
+        group.enter()
         fetchAccount(forUserID: "1") { result in
             switch result {
                 case .success(let accountsList):
                     self.accountList = accountsList
                     self.configureTableViewCell(with: accountsList)
-                    self.tableView.reloadData()
-
                 case .failure(let error):
                     print(error.localizedDescription)
             }
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+            self.refeashControl.endRefreshing()
         }
     }
 
@@ -97,5 +110,9 @@ extension AccountSummaryViewController {
         accountCellViewModels = accounts.map { account in
             AccountSummaryCell.ViewModel(accountType: account.type, accountName: account.name, balance: account.amount)
         }
+    }
+
+    @objc private func refreshContent() {
+        fetchData()
     }
 }
