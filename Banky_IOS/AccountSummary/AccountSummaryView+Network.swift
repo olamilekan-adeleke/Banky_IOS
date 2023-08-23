@@ -51,7 +51,7 @@ extension AccountSummaryHeader {
 // MARK: - Account
 
 struct Account: Codable {
-    let id: Int
+    let id: String
     let type: AccountType
     let name: String
     let amount: Decimal
@@ -63,20 +63,23 @@ extension AccountSummaryViewController {
         guard let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userID)/accounts") else {
             return completion(.failure(.invaildURL))
         }
+        print(url.absoluteString)
 
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                return completion(.failure(.serverError))
-            }
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    return completion(.failure(.serverError))
+                }
 
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.dateDecodingStrategy = .iso8601
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    jsonDecoder.dateDecodingStrategy = .iso8601
 
-                let accounts: [Account] = try jsonDecoder.decode([Account].self, from: data)
-                return completion(.success(accounts))
-            } catch {
-                return completion(.failure(.decodingError))
+                    let accounts: [Account] = try jsonDecoder.decode([Account].self, from: data)
+                    return completion(.success(accounts))
+                } catch {
+                    return completion(.failure(.decodingError))
+                }
             }
         }
 
