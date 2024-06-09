@@ -25,7 +25,7 @@ extension AccountSummaryViewController {
         print(url.absoluteString)
 
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { 
                 guard let data = data, error == nil else {
                     return completion(.failure(.serverError))
                 }
